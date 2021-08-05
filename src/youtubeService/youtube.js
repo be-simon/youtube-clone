@@ -11,9 +11,23 @@ class Youtube {
     })
   }
 
+  async getChannelWithId(id) {
+    try {
+      const res = await this.youtubeInst.get('channels', {
+        params: {
+          ...this.DEFAULT_PARAMS,
+          id: id
+        }
+      })
+      return res.data.items[0]
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   async getMostPopularVideos() {
     try {
-      const res = await this.youtubeInst.get('videos', {
+      const videos = await this.youtubeInst.get('videos', {
         params: {
           ...this.DEFAULT_PARAMS,
           part: 'snippet',
@@ -23,7 +37,10 @@ class Youtube {
         }
       })
 
-      return res.data.items
+      const items = videos.data.items.map(item => {
+        const channelThumbnails = this.getChannelWithId(item.id).snippet.thumbnails
+        return {...item, "channelThumbnails": channelThumbnails}
+      })
     } catch (err) {
       console.log(err)
     }

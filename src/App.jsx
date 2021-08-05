@@ -1,31 +1,22 @@
 import logo from './logo.svg';
 import { StrictMode, useEffect, useState } from 'react';
 import styles from './App.module.css';
+import Videolist from './components/contentList/contentList';
+
 
 function App({youtube}) {
-  const [videos, setVideos] = useState([])
+  const [contentList, setContentList] = useState([])
   
   useEffect(() => {
     youtube.getMostPopularVideos()
-    .then(items => setVideos(items))
+    .then(videos => setContentList(videos))
   }, [youtube])
   
   
   return (
     <div className={styles.App}>
-      <h1>Hello World</h1>
-      <ul>
-        {
-          videos.map(v => {
-            return (
-              <li>
-                <h1>{v.snippet.title}</h1>
-                <p>{v.snippet.description}</p>
-              </li>
-            )
-          })
-        }
-      </ul>
+      <Navbar/>
+      <ContentList contentList={contentList}/>
     </div>
   );
 }
