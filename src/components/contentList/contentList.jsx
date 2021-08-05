@@ -1,16 +1,18 @@
 import React from 'react';
-import Content from '../components/content/content'
-import styles from 'contentList.module.css'
+import Content from '../content/content';
+import styles from './contentList.module.css'
 
-const Contentlist = ({contentList}) => {
-  <ul className={styles.grid}>
-    {
-      videos.map(c => {
-        return <Content content={c}/>
-      })
-    }
-  </ul>
+const ContentList = ({contentList}) => {
+  return (
+      <ul className={styles.grid}>
+      {
+        contentList.map(c => {
+          return <Content content={c}/>
+        })
+      }
+    </ul>
+  )
 }
 
 
-export default Contentlist;
+export default ContentList;

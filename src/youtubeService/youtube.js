@@ -16,6 +16,7 @@ class Youtube {
       const res = await this.youtubeInst.get('channels', {
         params: {
           ...this.DEFAULT_PARAMS,
+          part: 'snippet',
           id: id
         }
       })
@@ -37,10 +38,15 @@ class Youtube {
         }
       })
 
-      const items = videos.data.items.map(item => {
-        const channelThumbnails = this.getChannelWithId(item.id).snippet.thumbnails
-        return {...item, "channelThumbnails": channelThumbnails}
-      })
+      const items = await Promise.all(
+        videos.data.items.map(async item => {
+          const channel = await this.getChannelWithId(item.snippet.channelId)
+          item.snippet["channelThumbnails"] = channel.snippet.thumbnails
+          return item
+      }))
+
+      return items
+
     } catch (err) {
       console.log(err)
     }

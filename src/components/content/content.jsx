@@ -1,18 +1,17 @@
 import React from 'react';
+import styles from './content.module.css'
 
-const Content = ({snippet}) => {
-  const [title, description, thumbnails, channelTitle] = snippet
-  
-  const [url, width, height] = thumbnails.default
+const Content = ({content:{snippet}}) => {
+  const {title, description, thumbnails, channelTitle, channelThumbnails} = snippet
 
   return (
-    <li>
-      <img src={url} alt="thumbnail" />
-      <div>
-        <img src="" alt="channelLogo" />
+    <li className={styles.content}>
+      <img className={styles.thumbnail} src={thumbnails.default.url} alt="thumbnail" />
+      <div className={styles.detail}>
+        <img className={styles.channelThumbnails} src={channelThumbnails.default.url} alt="channelThumbnail" />
         <div>
-          <h1></h1>
-          <p></p>
+          <h1 className={styles.title}>{title}</h1>
+          <p className={styles.channel}>{channelTitle}</p>
         </div>
       </div>
     </li>
