@@ -7,7 +7,7 @@ const ContentList = ({contentList}) => {
       <ul className={styles.grid}>
       {
         contentList.map(c => {
-          return <Content content={c}/>
+          return <Content key={c.id} content={c}/>
         })
       }
     </ul>
