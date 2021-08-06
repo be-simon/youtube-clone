@@ -1,8 +1,8 @@
 .content {
   display: flex;
   flex-direction: column;
-  padding: 0 0.5em 3em 0.5em;
-  background-color:aquamarine;
+  padding: 0 0.5em;
+  background-color:black;
 }
 
 .img_container {
@@ -17,7 +17,7 @@
   object-fit: cover;
 }
 
-.detail {
+.details {
   flex-basis: 40%;
   display: flex;  
   padding-top: 0.6em;
@@ -34,7 +34,7 @@
   padding-right: 3em;
 }
 
-.title, .channel {
+.title, .channel_name {
   font-size: 14px; 
   margin: 0;
   padding: 0;
@@ -42,13 +42,30 @@
 }
 
 .title {
+  color: white;
   text-overflow: ellipsis;
   overflow: hidden;
-  height: 2.8em;
-  line-height: 1.4em;
+  /* height: 2.8em;
+  line-height: 1.4em; */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
+.metadata {
+  color: grey;
+  margin-top: 0.3em;
+}
+
+.metadata_line {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  text-align: left;
+}
+
+.view_count::after {
+  content:'\2022';
+  margin-left: 0.3em;
+}
 

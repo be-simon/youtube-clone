@@ -49,7 +49,7 @@ class Youtube {
 
       const videoItems = videos.data.items.map(v => {
         for (let c of channelInfos) {
-          if (v.snippet.channelId == c.id) {
+          if (v.snippet.channelId === c.id) {
             v.snippet['channelThumbnails'] = c.snippet.thumbnails
             break
           }
