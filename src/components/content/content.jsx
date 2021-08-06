@@ -6,10 +6,12 @@ const Content = ({content:{snippet}}) => {
 
   return (
     <li className={styles.content}>
-      <img className={styles.thumbnail} src={thumbnails.default.url} alt="thumbnail" />
+      <div className={styles.img_container}>
+        <img className={styles.thumbnail} src={thumbnails.high.url} alt="thumbnail" />
+      </div>
       <div className={styles.detail}>
-        <img className={styles.channelThumbnails} src={channelThumbnails.default.url} alt="channelThumbnail" />
-        <div>
+        <img className={styles.channel_thumbnail} src={channelThumbnails.high.url} alt="channelThumbnail" />
+        <div className={styles.meta}>
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.channel}>{channelTitle}</p>
         </div>
