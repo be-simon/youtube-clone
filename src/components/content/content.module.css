@@ -1,8 +1,10 @@
+@value youtubeBackgroundBlack, youtubeWhite, youtubeTextGrey from '/src/commons/colors.module.css';
+@value youtubeFontSizeMedium, youtubeFontWeightNormal, youtubeLetterSpacing from '/src/commons/font.module.css';
+
 .content {
   display: flex;
   flex-direction: column;
   padding: 0 0.5em;
-  background-color:black;
 }
 
 .img_container {
@@ -34,34 +36,27 @@
   padding-right: 3em;
 }
 
-.title, .channel_name {
-  font-size: 14px; 
+.title, .channel_name, .metadata_line {
+  font-size: 14px;
   margin: 0;
   padding: 0;
   text-align:left;
 }
 
 .title {
-  color: white;
+  color: youtubeWhite;
   text-overflow: ellipsis;
   overflow: hidden;
-  /* height: 2.8em;
-  line-height: 1.4em; */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
 .metadata {
-  color: grey;
+  color: youtubeTextGrey;
   margin-top: 0.3em;
-}
-
-.metadata_line {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  text-align: left;
+  font-weight: youtubeFontWeightNormal;
+  letter-spacing: youtubeLetterSpacing;
 }
 
 .view_count::after {

@@ -1,6 +1,9 @@
+@value youtubeBackgroundBlack from '/src/commons/colors.module.css';
+
 .grid {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   grid-template-rows: repeat(auto-fit, minmax(200px, auto));
+  background-color: youtubeBackgroundBlack;
 }
