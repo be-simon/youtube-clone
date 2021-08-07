@@ -93,20 +93,20 @@ class Youtube() {
 - 기존에는 하나씩만 되는 줄 알고 20개의 컨텐츠를 그리기 위해 /videos 한번, 채널 썸네일 불러오기 위해 /channels 20번, 총 21번의 api 통신을 하고 있어서 매우 비효율적이다.
 - /videos 의 결과로 얻은 컨텐츠들의 channelId를 모아 channel 통신 메소드를 이용해 한번에 채널 데이터를 받아오자.
 - /channels 에 전달해준 id 배열 순서대로 응답이 오는게 아니라서.. 그에 맞게 매칭을 해줘야했다.
-```
+```jsx
 const channelIds = videos.data.items.map(v => {
-        return v.snippet.channelId
-      })
+    return v.snippet.channelId
+})
 
-      const channelInfos = await this.getChannelsWithId(channelIds)      
+const channelInfos = await this.getChannelsWithId(channelIds)      
 
-      const videoItems = videos.data.items.map(v => {
-        for (let c of channelInfos) {
-          if (v.snippet.channelId === c.id) {
-            v.snippet['channelThumbnails'] = c.snippet.thumbnails
-            break
-          }
-        }
-        return v
-      })
+const videoItems = videos.data.items.map(v => {
+    for (let c of channelInfos) {
+      if (v.snippet.channelId === c.id) {
+        v.snippet['channelThumbnails'] = c.snippet.thumbnails
+        break
+      }
+    }
+    return v
+})
 ```
