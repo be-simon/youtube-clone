@@ -3,6 +3,7 @@ import { StrictMode, useEffect, useState } from 'react';
 import styles from './App.module.css';
 import ContentList from './components/contentList/contentList';
 import Navbar from './components/navbar/navbar'
+import Sidebar from './components/sidebar/sidebar'
 
 function App({youtube}) {
   const [contentList, setContentList] = useState([])
@@ -16,7 +17,10 @@ function App({youtube}) {
   return (
     <div className={styles.App}>
       <Navbar/>
-      <ContentList contentList={contentList}/>
+      <div className={styles.body}>
+        <Sidebar/>
+        <ContentList contentList={contentList}/>
+      </div>
     </div>
   );
 }

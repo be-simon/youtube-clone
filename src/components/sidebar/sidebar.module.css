@@ -1,0 +1,8 @@
+@value youtubeMenuBlack from '/src/commons/colors.module.css';
+
+.sidebar {
+  width: 100%;
+  flex-basis: 25%;
+  background-color: youtubeMenuBlack;
+  color: white;
+}
