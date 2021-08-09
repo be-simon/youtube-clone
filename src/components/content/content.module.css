@@ -1,4 +1,4 @@
-@value youtubeBackgroundBlack, youtubeWhite, youtubeTextGrey from '/src/commons/colors.module.css';
+@value youtubeBackgroundBlack, youtubeWhite, youtubeLightGray from '/src/commons/colors.module.css';
 @value youtubeFontSizeMedium, youtubeFontWeightNormal, youtubeLetterSpacing from '/src/commons/font.module.css';
 
 .content {
@@ -53,7 +53,7 @@
 }
 
 .metadata {
-  color: youtubeTextGrey;
+  color: youtubeLightGray;
   margin-top: 0.3em;
   font-weight: youtubeFontWeightNormal;
   letter-spacing: youtubeLetterSpacing;
