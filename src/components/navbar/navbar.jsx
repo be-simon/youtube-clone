@@ -1,13 +1,21 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Searchbar from '../searchbar/searchbar';
 import styles from './navbar.module.css'
 
-const Navbar = (props) => {
+const Navbar = ({onClickLogo}) => {
+  const history = useHistory()
+
+  const handleClick = () => {
+    onClickLogo()
+    history.push('/')
+  }
+  
   return(
     <nav  className={styles.navbar}>
       <div className={styles.left_menu}>
         <div className={styles.guide_menu}>
-          <button className={styles.guide_menu_btn}>
+          <button className={styles.guide_menu_btn} onClick={handleClick}>
             <img className={styles.guide_menu_img} src="/img/menu.png" alt="menu" />
           </button>
         </div>

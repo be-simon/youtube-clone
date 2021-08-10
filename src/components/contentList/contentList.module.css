@@ -9,5 +9,12 @@
   margin: 0;
   padding: 0 2em;
   width: 100%;
+}
 
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0 2em;
+  flex-basis: 20%;
 }

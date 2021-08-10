@@ -63,6 +63,23 @@ class Youtube {
       console.log(err)
     }
   }
+
+  async getVideoWithId(id) {
+    try {
+      const res = await this.youtubeInst.get('videos', {
+        params: {
+          ...this.DEFAULT_PARAMS,
+          part: 'snippet, contentDetails, statistics',
+          id: id,
+        }
+      }) 
+
+      return res.data.items[0]
+
+    } catch (err) {
+      console.log(err)
+    }
+  } 
 }
 
 export default Youtube

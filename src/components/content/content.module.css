@@ -7,6 +7,10 @@
   padding: 0 0.5em;
 }
 
+.content:hover {
+  cursor: pointer;
+}
+
 .img_container {
   overflow: hidden;
   flex-basis: 60%;

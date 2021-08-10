@@ -1,8 +1,22 @@
-.App {
+.app_home {
   text-align: center;
 }
 
-.body {
+.home_body {
   display: flex;
   justify-content: stretch;
+}
+
+.app_watch {
+
+}
+
+.watch_body {
+  display: flex;
+
+}
+
+.video {
+  flex-basis: 90%;
+  height: 500px;
 }
