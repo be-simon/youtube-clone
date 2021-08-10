@@ -2,7 +2,11 @@
 
 .sidebar {
   width: 100%;
-  flex-basis: 25%;
+  flex-basis: 17%;
   background-color: youtubeMenuBlack;
   color: white;
+}
+
+.sidebar.list {
+  display: none;
 }

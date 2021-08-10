@@ -3,7 +3,7 @@ import styles from './watchView.module.css'
 
 const WatchView = ({content}) => {
   return ( 
-    <div>
+    <div className={styles.watch_container}>
 
       <iframe className={styles.video} 
         type="text/html" 

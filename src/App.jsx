@@ -23,6 +23,7 @@ function App({youtube}) {
 
   const handleIndexPath = () => {
     setContent()
+    setListLayout('grid')
   }
 
   const handleWatchPath = (cid, c) => {
@@ -32,13 +33,15 @@ function App({youtube}) {
       youtube.getVideoWithId(cid)
       .then(video => setContent(video))
     }
+
+    setListLayout('list')
   }
 
   return (
     <Fragment>
       <Navbar onClickLogo={handleIndexPath}/>
-      <div>
-        <Sidebar/>
+      <div className={styles.body}>
+        <Sidebar layout={listLayout}/>
 
         <Switch>
           <Route exact path='/'></Route>

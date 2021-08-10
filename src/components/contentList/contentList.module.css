@@ -1,20 +1,24 @@
 @value youtubeBackgroundBlack from '/src/commons/colors.module.css';
 
-.grid {
+.contents_container {
   list-style: none;
+  margin: 0;
+  width: 100%;
+  background-color: youtubeBackgroundBlack;
+  padding: 0;
+}
+
+.contents_container.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   grid-template-rows: repeat(auto-fit, minmax(200px, auto));
-  background-color: youtubeBackgroundBlack;
-  margin: 0;
-  padding: 0 2em;
-  width: 100%;
+  padding: 1em;
 }
 
-.list {
+.contents_container.list {
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: 0 2em;
-  flex-basis: 20%;
+  padding-right: 2em;
+  padding-top: 2em;
+  flex-basis: 30%;
 }

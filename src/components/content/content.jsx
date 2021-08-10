@@ -3,12 +3,14 @@ import { useHistory } from 'react-router-dom';
 import styles from './content.module.css'
 
 
-const Content = ({content, content:{snippet, contentDetails, statistics}, onClick}) => {
+const Content = ({content, content:{snippet, contentDetails, statistics}, onClick, layout}) => {
   const {title, description, thumbnails, channelTitle, channelThumbnails, publishedAt} = snippet
   const {duration} = contentDetails
   const {viewCount} = statistics
 
   const history = useHistory()
+  const layoutStyle = layout === 'grid' ? styles.grid : styles.list
+
 
   const handleClick = () => {
     onClick(content)
@@ -16,17 +18,20 @@ const Content = ({content, content:{snippet, contentDetails, statistics}, onClic
   }
 
   return (
-    <li className={styles.content} onClick={handleClick}>
-      <div className={styles.img_container}>
-        <img className={styles.thumbnail} src={thumbnails.high.url} alt="thumbnail" />
+    <li className={`${styles.content} ${layoutStyle}`} onClick={handleClick}>
+      <div className={`${styles.img_container} ${layoutStyle}`}>
+        <img className={`${styles.thumbnail} ${layoutStyle}`} src={thumbnails.high.url} alt="thumbnail" />
       </div>
-      <div className={styles.details}>
-        <img className={styles.channel_thumbnail} src={channelThumbnails.high.url} alt="channelThumbnail" />
-        <div className={styles.meta}>
+      <div className={`${styles.details} ${layoutStyle}`}>
+        {
+          layout === 'grid' &&
+          <img className={styles.channel_thumbnail} src={channelThumbnails.high.url} alt="channelThumbnail" />
+        }
+        <div className={`${styles.meta} ${layoutStyle}`}>
           <h1 className={styles.title}>{title}</h1>
           <div className={styles.metadata}>
-            <p className={styles.channel_name}>{channelTitle}</p>
-            <p className={styles.metadata_line}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
+            <p className={`${styles.channel_name} ${layoutStyle}`}>{channelTitle}</p>
+            <p className={`${styles.metadata_line} ${layoutStyle}`}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
           </div>
         </div>
       </div>
