@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './searchbar.module.css'
 
-const Searchbar = (props) => {
+const Searchbar = ({onSearch}) => {
+  const inputRef = useRef()
+
+  const handleSearch = () => {
+    onSearch(inputRef.current.value)
+  }
+
+  const handleKeyPress = (e) => {
+    console.log(e)
+    if (e.key == 'Enter')
+      onSearch(inputRef.current.value)
+  }
 
   return (
-    <form className={styles.form} action="">
-      <input className={styles.input_box} type="search" placeholder="검색"/>
-      <button className={styles.submit_btn}>
+    <div className={styles.searchbar}>
+      <div className={styles.input_container}>
+        <input className={styles.input_box} type="search" placeholder="검색" ref={inputRef} onKeyPress={handleKeyPress}/>
+      </div>
+      <button className={styles.submit_btn} onClick={handleSearch}>
         <img className={styles.submit_img} src="img/loupe.png" alt="loupe" />
       </button>
-    </form>
+    </div>
   )
 }
 

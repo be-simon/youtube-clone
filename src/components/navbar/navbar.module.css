@@ -18,7 +18,7 @@
 }
 
 .right_menu {
-  flex-basis: 20%;
+  flex-basis: 15%;
   display: flex;
   align-items: center;
   justify-content: flex-end;

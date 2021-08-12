@@ -80,6 +80,24 @@ class Youtube {
       console.log(err)
     }
   } 
+
+  async search(query) {
+    try {
+      const res = await this.youtubeInst.get('search', {
+        params: {
+          ...this.DEFAULT_PARAMS,
+          part: 'snippet',
+          q : query,
+          type: 'video',
+          maxResults: 25
+        }
+      })
+
+      return res.data.items
+    } catch (err) {
+      console.log(err)
+    }
+  }
 }
 
 export default Youtube

@@ -3,12 +3,16 @@ import { useHistory } from 'react-router-dom';
 import Searchbar from '../searchbar/searchbar';
 import styles from './navbar.module.css'
 
-const Navbar = ({onClickLogo}) => {
+const Navbar = ({onClickLogo, onSearch}) => {
   const history = useHistory()
 
   const handleClick = () => {
     onClickLogo()
     history.push('/')
+  }
+
+  const handleSearch = (query) => {
+    onSearch(query)
   }
   
   return(
@@ -21,7 +25,7 @@ const Navbar = ({onClickLogo}) => {
         </div>
         <div className={styles.logo}>logo</div>
       </div>
-      <Searchbar/>
+      <Searchbar onSearch={handleSearch}/>
       <div className={styles.right_menu}>
         <button>btn1</button>
         <button>btn2</button>

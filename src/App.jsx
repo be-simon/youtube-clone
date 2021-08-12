@@ -22,8 +22,10 @@ function App({youtube}) {
   }
 
   const handleIndexPath = () => {
-    setContent()
-    setListLayout('grid')
+    if (!content)
+      setContent()
+    if (listLayout === 'list')
+      setListLayout('grid') 
   }
 
   const handleWatchPath = (cid, c) => {
@@ -37,14 +39,21 @@ function App({youtube}) {
     setListLayout('list')
   }
 
+  const handleSearch = (query) => {
+    youtube.search(query)
+    .then(videos => setContentList(videos))
+  }
+
   return (
     <Fragment>
-      <Navbar onClickLogo={handleIndexPath}/>
+      <Navbar onClickLogo={handleIndexPath} onSearch={handleSearch}/>
       <div className={styles.body}>
         <Sidebar layout={listLayout}/>
 
         <Switch>
-          <Route exact path='/'></Route>
+          <Route exact path='/' render={handleIndexPath}>
+            
+          </Route>
           <Route exact path='/watch'>
             <WatchService content={content} service={handleWatchPath}/>
           </Route>
