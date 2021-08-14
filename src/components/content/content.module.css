@@ -3,26 +3,31 @@
 
 .content {
   display: flex;
-  padding: 0 0.5em;
 }
 
 .content.grid {
   flex-direction: column;
+  height: 18em;
+  padding: 0 0.5em;
+  padding-bottom: 2em;
+}
+
+.content.list {
+  height: 6em;
+  padding-bottom: 0.5em;
 }
 
 .content:hover {
   cursor: pointer;
 }
 
-
 .img_container {
   overflow: hidden;
-  height: 55%;
 }
 
 .img_container.list {
   width: 180px;
-  height: 73%;
+  height: 100%;
   margin-right: 0.5em;
 }
 
@@ -34,6 +39,7 @@
 
 .details.grid{
   display: flex;  
+  flex-basis: 40%;
   padding-top: 0.6em;
 }
 

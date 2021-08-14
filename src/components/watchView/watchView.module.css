@@ -1,3 +1,39 @@
+@value youtubeLightGray, youtubeWhite, youtubeBackgroundBlack from '/src/commons/colors.module.css';
+@value youtubeFontWeightBold, youtubeFontWeightNormal, youtubeSetterSpacing from '/src/commons/font.module.css';
+
 .watch_container {
-  flex-basis: 100%;
+  width: 100%;
+  padding: 1.5em;
+  background-color: youtubeBackgroundBlack;
+}
+
+
+.video {
+  aspect-ratio: 16/9;
+  width: 100%;
+  border: none;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  color: youtubeWhite;
+  margin-top: 2em;
+}
+
+.title, .meta_line {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: youtubeFontWeightBold;
+}
+
+.meta_line {
+  margin-top: 0.8em;
+  color: youtubeLightGray;
+  font-weight: youtubeFontWeightNormal;
+  letter-spacing: youtubeLetterSpacing;
 }
