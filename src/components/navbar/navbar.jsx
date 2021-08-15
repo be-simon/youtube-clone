@@ -3,11 +3,10 @@ import { useHistory } from 'react-router-dom';
 import Searchbar from '../searchbar/searchbar';
 import styles from './navbar.module.css'
 
-const Navbar = ({onClickLogo, onSearch}) => {
+const Navbar = ({onSearch}) => {
   const history = useHistory()
 
   const handleClick = () => {
-    onClickLogo()
     history.push('/')
   }
 

@@ -4,62 +4,51 @@ import styles from './App.module.css';
 import ContentList from './components/contentList/contentList';
 import Navbar from './components/navbar/navbar'
 import Sidebar from './components/sidebar/sidebar'
-import WatchService from './serviceComponents/watchService';
-import { Switch, Route } from 'react-router-dom'
+import WatchContainer from './container/watchContainer';
+import { Switch, Route, useLocation } from 'react-router-dom'
+
 
 function App({youtube}) {
   const [contentList, setContentList] = useState([])
-  const [content, setContent] = useState()
-  const [listLayout, setListLayout] = useState('grid')
+  const [content, setContent] = useState(null)
+  const location = useLocation()
 
   useEffect(() => {
     youtube.getMostPopularVideos()
     .then(videos => setContentList(videos))
   }, [youtube])
 
-  const handleClick = (c) => {
+  useEffect(() => {
+    if (location.pathname === '/')
+      setContent(null)
+      
+    window.scrollTo(0, 0)
+  }, [location.key])
+
+  function handleContentChange(c) {
     setContent(c)
   }
 
-  const handleIndexPath = () => {
-    if (!content)
-      setContent()
-    if (listLayout === 'list')
-      setListLayout('grid') 
-  }
-
-  const handleWatchPath = (cid, c) => {
-    if (!cid)
-      setContent({id:''})
-    else if (!c || cid != c.id) {
-      youtube.getVideoWithId(cid)
-      .then(video => setContent(video))
-    }
-
-    setListLayout('list')
-  }
-
-  const handleSearch = (query) => {
+  function handleSearch(query) {
     youtube.search(query)
     .then(videos => setContentList(videos))
   }
 
   return (
     <Fragment>
-      <Navbar onClickLogo={handleIndexPath} onSearch={handleSearch}/>
+      <Navbar onSearch={handleSearch}/>
       <div className={styles.body}>
-        <Sidebar layout={listLayout}/>
+        <Sidebar layout='grid'/>
 
         <Switch>
-          <Route exact path='/' render={handleIndexPath}>
-            
+          <Route exact path='/'>
+            <ContentList contentList={contentList} onChange={handleContentChange} layout='grid'/>
           </Route>
           <Route exact path='/watch'>
-            <WatchService content={content} service={handleWatchPath}/>
+            <WatchContainer youtube={youtube} content={content} onChange={handleContentChange}/>
+            <ContentList contentList={contentList} onChange={handleContentChange} layout='list'/>
           </Route>
         </Switch>
-
-        <ContentList contentList={contentList} onClick={handleClick} layout={listLayout}/>
       </div>
 
     </Fragment>

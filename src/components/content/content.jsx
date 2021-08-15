@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styles from './content.module.css'
 
 
-const Content = ({content, content:{snippet, contentDetails, statistics}, onClick, layout}) => {
+const Content = ({content, content:{snippet, contentDetails, statistics}, onChange, layout}) => {
   const {title, description, thumbnails, channelTitle, channelThumbnails, publishedAt} = snippet
   const {duration} = contentDetails
   const {viewCount} = statistics
@@ -11,9 +11,8 @@ const Content = ({content, content:{snippet, contentDetails, statistics}, onClic
   const history = useHistory()
   const layoutStyle = layout === 'grid' ? styles.grid : styles.list
 
-
   const handleClick = () => {
-    onClick(content)
+    onChange(content)
     history.push(`/watch?v=${content.id}`)
   }
 

@@ -1,0 +1,26 @@
+import React, {useEffect} from 'react';
+import { Redirect, useLocation } from 'react-router-dom';
+import WatchView from '../components/watchView/watchView';
+
+
+const WatchContainer = ({youtube, content, onChange}) => {
+  const query = new URLSearchParams(useLocation().search)
+  const cid = query.get("v")
+
+  useEffect(() => {
+    if (!content || content.id !== cid)
+      youtube.getVideoWithId(cid)
+      .then(video => {
+        const c = video ? video : {id: cid}
+        onChange(c)
+      })
+  })
+
+  if (cid) {
+    if (content) return (<WatchView content={content} layout='list'/>)
+    else return (<></>)
+  } else 
+    return (<Redirect to='/'/>)
+} 
+
+export default WatchContainer;
