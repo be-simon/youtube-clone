@@ -64,17 +64,17 @@ class Youtube {
     }
   }
 
-  async getVideoWithId(id) {
+  async getVideoWithIds(ids) {
     try {
       const res = await this.youtubeInst.get('videos', {
         params: {
           ...this.DEFAULT_PARAMS,
           part: 'snippet, contentDetails, statistics',
-          id: id,
+          id: ids.toString(),
         }
       }) 
 
-      return res.data.items[0]
+      return res.data.items
 
     } catch (err) {
       console.log(err)
@@ -93,7 +93,37 @@ class Youtube {
         }
       })
 
-      return res.data.items
+      const videoIds = res.data.items.map(v => {
+        return v.id.videoId
+      })
+
+      const channelIds = res.data.items.map(v => {
+        return v.snippet.channelId
+      })
+
+      const videoDetails = await this.getVideoWithIds(videoIds)
+      const channelInfos = await this.getChannelsWithId(channelIds)      
+
+      const videoItems = res.data.items.map(v => {
+        v.id = v.id.videoId
+        for (let d of videoDetails) {
+          if (v.id === d.id) {
+            v['contentDetails'] = d.contentDetails
+            v['statistics'] = d.statistics
+            break
+          }
+        }
+        
+        for (let c of channelInfos) {
+          if (v.snippet.channelId === c.id) {
+            v.snippet['channelThumbnails'] = c.snippet.thumbnails
+            break
+          }
+        }
+        return v
+      })
+
+      return videoItems
     } catch (err) {
       console.log(err)
     }

@@ -9,8 +9,9 @@ const WatchContainer = ({youtube, content, onChange}) => {
 
   useEffect(() => {
     if (!content || content.id !== cid)
-      youtube.getVideoWithId(cid)
-      .then(video => {
+      youtube.getVideoWithIds(cid)
+      .then(items => {
+        const video = items[0]
         const c = video ? video : {id: cid}
         onChange(c)
       })
