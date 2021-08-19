@@ -18,7 +18,7 @@ const WatchContainer = ({youtube, content, onChange}) => {
   })
 
   if (cid) {
-    if (content) return (<WatchView content={content} layout='list'/>)
+    if (content) return (<WatchView content={content}/>)
     else return (<></>)
   } else 
     return (<Redirect to='/'/>)

@@ -1,16 +1,18 @@
 import React, { useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './searchbar.module.css'
 
 const Searchbar = ({onSearch}) => {
   const inputRef = useRef()
+  const history = useHistory()
 
   const handleSearch = () => {
-    onSearch(inputRef.current.value)
+    history.push(`/search?q=${inputRef.current.value}`)
   }
 
   const handleKeyPress = (e) => {
     if (e.key == 'Enter')
-      onSearch(inputRef.current.value)
+      history.push(`/search?q=${inputRef.current.value}`)
   }
 
   return (

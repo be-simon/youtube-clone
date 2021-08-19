@@ -5,12 +5,14 @@ import ContentList from './components/contentList/contentList';
 import Navbar from './components/navbar/navbar'
 import Sidebar from './components/sidebar/sidebar'
 import WatchContainer from './container/watchContainer';
+import SearchContainer from './container/searchContainer';
 import { Switch, Route, useLocation } from 'react-router-dom'
 
 
 function App({youtube}) {
   const [contentList, setContentList] = useState([])
   const [content, setContent] = useState(null)
+  const [searchList, setSearchList] = useState({query: '', list: []})
   const location = useLocation()
 
   useEffect(() => {
@@ -19,8 +21,9 @@ function App({youtube}) {
   }, [youtube])
 
   useEffect(() => {
-    if (location.pathname === '/')
+    if (location.pathname === '/') {
       setContent(null)
+    }
       
     window.scrollTo(0, 0)
   }, [location.key])
@@ -31,7 +34,7 @@ function App({youtube}) {
 
   function handleSearch(query) {
     youtube.search(query)
-    .then(videos => setContentList(videos))
+    .then(videos => setSearchList({query: query, list: videos}))
   }
 
   return (
@@ -46,8 +49,13 @@ function App({youtube}) {
           </Route>
           <Route exact path='/watch'>
             <WatchContainer youtube={youtube} content={content} onChange={handleContentChange}/>
-            <ContentList contentList={contentList} onChange={handleContentChange} layout='list'/>
+            <ContentList contentList={contentList} onChange={handleContentChange} layout='watch'/>
           </Route>
+          <Route exact path='/search'>
+            <SearchContainer searchList={searchList} onSearch={handleSearch}/>
+            <ContentList contentList={searchList.list} onChange={handleContentChange} layout='search'/>
+          </Route>
+
         </Switch>
       </div>
 
