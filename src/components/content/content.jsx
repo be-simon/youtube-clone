@@ -9,7 +9,21 @@ const Content = ({content, content:{snippet, contentDetails, statistics}, onChan
   const {viewCount} = statistics
 
   const history = useHistory()
-  const layoutStyle = layout === 'grid' ? styles.grid : styles.list
+  let layoutStyle = styles.grid
+  switch (layout) {
+    case 'grid':
+      layoutStyle = styles.grid
+      break
+    case 'watch':
+      layoutStyle = styles.watch
+      break
+    case 'search':
+      layoutStyle = styles.search
+      break
+    default:
+      console.log('there is no such layout')
+      break
+  }
 
   const handleClick = () => {
     onChange(content)
@@ -24,14 +38,24 @@ const Content = ({content, content:{snippet, contentDetails, statistics}, onChan
       <div className={`${styles.details} ${layoutStyle}`}>
         {
           layout === 'grid' &&
-          <img className={styles.channel_thumbnail} src={channelThumbnails.high.url} alt="channelThumbnail" />
+          <img className={`${styles.channel_thumbnail} ${layoutStyle}`} src={channelThumbnails.high.url} alt="channelThumbnail" />
         }
         <div className={`${styles.meta} ${layoutStyle}`}>
-          <h1 className={styles.title}>{title}</h1>
-          <div className={styles.metadata}>
-            <p className={`${styles.channel_name} ${layoutStyle}`}>{channelTitle}</p>
-            <p className={`${styles.metadata_line} ${layoutStyle}`}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
-          </div>
+          <h1 className={`${styles.title} ${layoutStyle}`}>{title}</h1>
+            {
+              layout === 'watch' 
+              ? <div className={styles.metadata}>
+                  <p className={`${styles.channel_name} ${layoutStyle}`}>{channelTitle}</p>
+                  <p className={`${styles.metadata_line} ${layoutStyle}`}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
+                </div>
+              : <div className={styles.metadata}>
+                  <p className={`${styles.metadata_line} ${layoutStyle}`}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
+                  <div className={`${styles.channel} ${layoutStyle}`}>
+                    <img className={`${styles.channel_thumbnail} ${layoutStyle}`} src={channelThumbnails.high.url} alt="channelThumbnail" />
+                    <p className={`${styles.channel_name} ${layoutStyle}`}>{channelTitle}</p>
+                  </div> 
+                </div>
+            }
         </div>
       </div>
     </li>

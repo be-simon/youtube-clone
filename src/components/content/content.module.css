@@ -5,6 +5,10 @@
   display: flex;
 }
 
+.content:hover {
+  cursor: pointer;
+}
+
 .content.grid {
   flex-direction: column;
   height: 18em;
@@ -12,23 +16,30 @@
   padding-bottom: 2em;
 }
 
-.content.list {
+.content.watch {
   height: 6em;
   padding-bottom: 0.5em;
 }
 
-.content:hover {
-  cursor: pointer;
+.content.search {
+  display: flex;
+  height: 12.8em;
+  padding-bottom: 0.8em;
 }
 
 .img_container {
   overflow: hidden;
 }
 
-.img_container.list {
+.img_container.watch {
   width: 180px;
   height: 100%;
   margin-right: 0.5em;
+}
+
+.img_container.search {
+  min-width: 360px;
+  margin-right: 1em;
 }
 
 .thumbnail {
@@ -43,7 +54,7 @@
   padding-top: 0.6em;
 }
 
-.details.list {
+.details.watch {
   flex-basis: 60%;
 }
 
@@ -54,8 +65,20 @@
   margin-right: 0.8em;
 }
 
+.channel_thumbnail.search {
+  width: 1.7em;
+  height: 1.7em;
+  margin-right: 0.4em;
+}
+
 .meta.grid {
   padding-right: 3em;
+}
+
+.channel.search {
+  display: flex;
+  align-items: center;
+  margin: 0.8em 0;
 }
 
 
@@ -66,7 +89,20 @@
   text-align:left;
 }
 
-.channel_name.list, .metadata_line.list {
+.channel_name.watch, .metadata_line.watch {
+  font-size: 12px;
+}
+
+.title.search {
+  font-size: 18px;
+  font-weight: youtubeFontWeightNormal;
+}
+
+.metadata_line.search {
+  font-size: 13px;
+}
+
+.channel_name.search {
   font-size: 12px;
 }
 

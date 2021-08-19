@@ -1,3 +1,6 @@
+@value youtubeBackgroundBlack from '/src/commons/colors.module.css';
+
 .body {
   display: flex;
+  background-color: youtubeBackgroundBlack;
 }

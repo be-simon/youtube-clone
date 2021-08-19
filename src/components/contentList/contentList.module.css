@@ -15,10 +15,18 @@
   padding: 1em;
 }
 
-.contents_container.list {
+.contents_container.watch {
   display: flex;
   flex-direction: column;
   padding-right: 2em;
   padding-top: 1.5em;
-  width: 35%;
+  flex-basis: 35%;
+}
+
+.contents_container.search {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  width: 65%;
+  margin: auto;
 }
