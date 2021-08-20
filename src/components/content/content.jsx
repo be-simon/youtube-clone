@@ -43,18 +43,21 @@ const Content = ({content, content:{snippet, contentDetails, statistics}, onChan
         <div className={`${styles.meta} ${layoutStyle}`}>
           <h1 className={`${styles.title} ${layoutStyle}`}>{title}</h1>
             {
-              layout === 'watch' 
-              ? <div className={styles.metadata}>
+              (layout === 'grid' || layout === 'watch') && 
+              <div className={styles.metadata}>
+                <p className={`${styles.channel_name} ${layoutStyle}`}>{channelTitle}</p>
+                <p className={`${styles.metadata_line} ${layoutStyle}`}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
+              </div>
+            }
+            {
+              layout === 'search' && 
+              <div className={styles.metadata}>
+                <p className={`${styles.metadata_line} ${layoutStyle}`}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
+                <div className={`${styles.channel} ${layoutStyle}`}>
+                  <img className={`${styles.channel_thumbnail} ${layoutStyle}`} src={channelThumbnails.high.url} alt="channelThumbnail" />
                   <p className={`${styles.channel_name} ${layoutStyle}`}>{channelTitle}</p>
-                  <p className={`${styles.metadata_line} ${layoutStyle}`}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
-                </div>
-              : <div className={styles.metadata}>
-                  <p className={`${styles.metadata_line} ${layoutStyle}`}><span className={styles.view_count}>{getViewCountString(viewCount)}</span> {getTimeIntervalString(publishedAt)}</p>
-                  <div className={`${styles.channel} ${layoutStyle}`}>
-                    <img className={`${styles.channel_thumbnail} ${layoutStyle}`} src={channelThumbnails.high.url} alt="channelThumbnail" />
-                    <p className={`${styles.channel_name} ${layoutStyle}`}>{channelTitle}</p>
-                  </div> 
-                </div>
+                </div> 
+              </div>
             }
         </div>
       </div>

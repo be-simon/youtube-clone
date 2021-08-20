@@ -40,6 +40,5 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3"
-  },
-  "homepage": "https://be-simon.github.io/youtube-clone/"
+  }
 }
